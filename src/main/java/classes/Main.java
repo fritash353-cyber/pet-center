@@ -22,6 +22,7 @@ public class Main {
                     "62000-000"
             );
 
+
             // Animal
             Animal animal = new Animal(
             1,
@@ -61,6 +62,7 @@ public class Main {
             );
 
             veterinario.adicionarConsulta(consulta);
+
             animal.adicionarConsulta(consulta);
 
             consulta.regCons();
@@ -98,6 +100,7 @@ public class Main {
             System.out.println("\n===== TRATAMENTO =====");
             System.out.println(tratamento.visTratamento());
 
+            System.out.println("\n===== NOTIFICAÇÃO =====");
             animal.enviarNotificacao("Consulta marcada para amanhã às 14h.");
 
             veterinario.logout();
@@ -110,5 +113,7 @@ public class Main {
       // mvn compile
       // mvn exec:java "-Dexec.mainClass=classes.Main"
       // mvn test
+
+      
     }
 }

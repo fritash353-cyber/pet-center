@@ -3,11 +3,6 @@ package classes;
 import java.time.LocalDate;
 import interfaces.Autenticavel;
 
-
-   /**
-   * Representa um funcionário da clínica veterinária.
-   * Herda da classe Pessoa e implementa a interface Autenticavel.
-   */
 public class Funcionario extends Pessoa implements Autenticavel{
 
     private LocalDate dataAdmissao;
@@ -23,21 +18,20 @@ public class Funcionario extends Pessoa implements Autenticavel{
 
         this.dataAdmissao = dataAdmissao;
         this.salario = salario;
-
     }
+
+    // GETTERS: //
     public LocalDate getDataAdmissao() {
         return dataAdmissao;
     }
-
     public double getSalario() {
         return salario;
     }
 
-
+    // SETTERS: //
     public void setDataAdmissao(LocalDate dataAdmissao) {
         this.dataAdmissao = dataAdmissao;
     }
-
 
     /**
     * Define o salário do funcionário.
@@ -46,31 +40,25 @@ public class Funcionario extends Pessoa implements Autenticavel{
     * @throws IllegalArgumentException Caso o salário seja negativo.
     */
     public void setSalario(double salario) {
-
         if (salario < 0) {
             throw new IllegalArgumentException("O salário não pode ser negativo.");
         }
-
         this.salario = salario;
     }
 
 
-     /**
- * Retorna o salário do funcionário.
-*
-* @return Salário do funcionário.
-*/
+     
     public double calcularSalario(){
         
         return salario;
     }
     
     /**
- * Realiza o login do funcionário.
- *
- * @return true caso o login seja realizado com sucesso,
- *         false caso contrário.
- */
+    * Realiza o login do funcionário.
+    *
+    * @return true caso o login seja realizado com sucesso,
+    *         false caso contrário.
+    */
     @Override
     public boolean login(){
         try {

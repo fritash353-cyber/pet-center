@@ -20,18 +20,22 @@ public class Cliente extends Pessoa implements Cadastravel{
         this.animais = new ArrayList<>();
     }
 
-     public String getCpf() {
+    // GETTERS: //
+
+    public String getCpf() {
         return cpf;
     }
-
     public String getCep() {
         return cep;
     }
-
     public List<Animal> getAnimais() {
         return animais;
     }
 
+    /**
+     * @param cpf cpf não pode ser nulo ou preenchido só com espaços.
+     * @throws IllegalArgumentException caso o cpf for nulo ou for preenchido só com espaços.
+    */
     public void setCpf(String cpf) {
         if (cpf == null || cpf.isBlank()) {
     throw new IllegalArgumentException("CPF inválido.");
@@ -40,6 +44,10 @@ public class Cliente extends Pessoa implements Cadastravel{
      this.cpf = cpf;
     }
 
+    /**
+     * @param cep não pode ser nulo ou preenchido só com espaços.
+     * @throws IllegalArgumentException caso o cep for nulo ou for preenchido só com espaços.
+    */
     public void setCep(String cep) {
         if (cep == null || cep.isBlank()) {
     throw new IllegalArgumentException("CEP inválido.");
@@ -67,11 +75,11 @@ public class Cliente extends Pessoa implements Cadastravel{
     }
 
     /**
- * Adiciona um animal à lista do cliente.
- *
- * @param animal Animal a ser adicionado.
- * @throws IllegalArgumentException Se o animal for nulo.
- */
+    * Adiciona um animal à lista do cliente.
+    *
+    * @param animal Animal a ser adicionado.
+    * @throws IllegalArgumentException Se o animal for nulo.
+    */
     public void adicionarAnimal(Animal animal) {
         if (animal == null) {
     throw new IllegalArgumentException("Animal inválido.");
@@ -80,14 +88,13 @@ public class Cliente extends Pessoa implements Cadastravel{
     }
 
     /**
- * Remove um animal da lista do cliente.
- *
- * @param animal Animal a ser removido.
- * @throws IllegalArgumentException Se o animal for nulo.
- */
+    * Remove um animal da lista do cliente.
+    * @param animal Animal a ser removido.
+    * @throws IllegalArgumentException Se o animal for nulo.
+    */
     public void removerAnimal(Animal animal) {
         if (animal == null) {
-        throw new IllegalArgumentException("Animal inválido.");
+        throw new IllegalArgumentException("tem que ter pelo menos 1 animal.");
         }
 
       animais.remove(animal);
@@ -96,7 +103,6 @@ public class Cliente extends Pessoa implements Cadastravel{
 
     @Override
     public void cadastrar(){
-        // Testando tratamento de exceção: //
          if(cpf == null || cpf.isBlank()){
         throw new IllegalArgumentException("CPF inválido.");
          }
@@ -121,20 +127,14 @@ public class Cliente extends Pessoa implements Cadastravel{
     }
 
     /**
- * Retorna os dados do cliente formatados.
- *
- * @return String com id, nome, telefone, email, endereço, CPF e CEP.
- */
+    * Retorna os dados do cliente formatados.
+    * @return String com id, nome, telefone, email, endereço, CPF e CEP.
+    */
     @Override
-    public Object consultar(int id){
-        
+    public Object consultar(int id){   
          if (getId() == id) {
             return this;
         }
-
         return null;
     }
-
-    
-
 }

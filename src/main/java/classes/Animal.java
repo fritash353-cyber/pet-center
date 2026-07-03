@@ -30,15 +30,12 @@ public class Animal implements Cadastravel, Notificavel{
         if (nome == null || nome.isBlank()) {
             throw new IllegalArgumentException("Nome inválido.");
         }
-
         if (idade < 0) {
             throw new IllegalArgumentException("Idade inválida.");
         }
-
         if (peso <= 0) {
             throw new IllegalArgumentException("Peso inválido.");
         }
-
         if (cliente == null) {
             throw new exceptions.AnimalSemDonoException("Não é possível cadastrar um animal sem um dono");
         }
@@ -55,14 +52,36 @@ public class Animal implements Cadastravel, Notificavel{
         this.consultas = new ArrayList<>();
     }
 
-    // getters e setters: 
+    // GETTERS: //
     public int getId(){
         return id;
     }
-
     public String getNome(){
         return nome;
     }
+    public int getIdade(){
+        return idade;
+    }
+    public Sexo getSexo() {
+    return sexo;
+    }
+    public double getPeso(){
+        return peso;
+    }
+    public LocalDate getDataNascimento(){
+        return dataNascimento;
+    }
+    public Cliente getCliente() {
+        return cliente;
+    }
+    public Especie getEspecie(){
+        return especie;
+    }
+    public List<Consulta> getConsultas(){
+        return consultas;
+    }
+
+    //SETTERS://
 
     /**
      * alterar o nome de animal
@@ -76,48 +95,41 @@ public class Animal implements Cadastravel, Notificavel{
         this.nome = nome;
     }
 
-    public int getIdade(){
-        return idade;
-    }
-
+    /**
+     * alterar a idade de animal
+     * @param idade a nova idade não pode ser menor que 0.
+     * @throws IllegalArgumentException Se a idade for menor que 0.
+     */
     public void setIdade(int idade){
-        if(idade > 0){
+        if(idade < 0){
             throw new IllegalArgumentException("Idade inválida");
         }
         this.idade = idade;
     }
 
-    public Sexo getSexo() {
-    return sexo;
-    }
 
     public void setSexo(Sexo sexo) {
     this.sexo = sexo;
     }
 
-    public double getPeso(){
-        return peso;
-    }
 
+     /**
+     * alterar o peso de animal
+     * @param peso o novo peso não pode ser menor que 0.
+     * @throws IllegalArgumentException Se o peso for menor que 0.
+     */
     public void setPeso(double peso){
+        if(peso <= 0){
+            throw new IllegalArgumentException("Peso inválido");
+        }
         this.peso = peso;
     }
 
-    public LocalDate getDataNascimento(){
-        return dataNascimento;
-    }
 
     public void setDataNascimento(LocalDate dataNascimento){
         this.dataNascimento = dataNascimento;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public Especie getEspecie(){
-        return especie;
-    }
 
     public void setEspecie(Especie especie){
         this.especie = especie;
@@ -131,10 +143,6 @@ public class Animal implements Cadastravel, Notificavel{
         this.tratamentos = tratamentos;
     }
 
-    public List<Consulta> getConsultas(){
-        return consultas;
-    }
-
     public void setConsultas(List<Consulta> consultas){
         this.consultas =  consultas;
     }
@@ -143,7 +151,7 @@ public class Animal implements Cadastravel, Notificavel{
         this.cliente = cliente;
     }
 
-    /**1 @param animal realiza 1 ou mais tratamento 
+    /** @param animal 1 animal realiza 1 ou mais tratamento 
      * @throws IllegalArgumentException Se o tratamento fornecido for nulo
     */
     public void adicionarTratamento(Tratamento tratamento) {
@@ -172,10 +180,10 @@ public class Animal implements Cadastravel, Notificavel{
 
 
     /**
- * Exibe os dados do animal formatados.
- *
- * @return String com nome, idade, sexo, peso, espécie e tutor.
- */
+    * Exibe os dados do animal formatados.
+    *
+    * @return String com nome, idade, sexo, peso, espécie e tutor.
+     */
     public String visAnimal(){
         return "Nome: " + nome
         + "\nIdade: " + idade
