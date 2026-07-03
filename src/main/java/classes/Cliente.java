@@ -4,6 +4,7 @@ import java.util.List;
 import interfaces.Cadastravel;
 import java.util.ArrayList;
 
+
 public class Cliente extends Pessoa implements Cadastravel{
     
     private String cpf;
@@ -40,13 +41,12 @@ public class Cliente extends Pessoa implements Cadastravel{
     }
 
     public void setCep(String cep) {
-        if (cpf == null || cpf.isBlank()) {
+        if (cep == null || cep.isBlank()) {
     throw new IllegalArgumentException("CEP inválido.");
         }
 
       this.cep = cep;
     }
-
 
     public void regCliente(){
         System.out.println("Cliente cadastrado com sucesso!");
@@ -66,6 +66,12 @@ public class Cliente extends Pessoa implements Cadastravel{
         return animais;
     }
 
+    /**
+ * Adiciona um animal à lista do cliente.
+ *
+ * @param animal Animal a ser adicionado.
+ * @throws IllegalArgumentException Se o animal for nulo.
+ */
     public void adicionarAnimal(Animal animal) {
         if (animal == null) {
     throw new IllegalArgumentException("Animal inválido.");
@@ -73,6 +79,12 @@ public class Cliente extends Pessoa implements Cadastravel{
      animais.add(animal);
     }
 
+    /**
+ * Remove um animal da lista do cliente.
+ *
+ * @param animal Animal a ser removido.
+ * @throws IllegalArgumentException Se o animal for nulo.
+ */
     public void removerAnimal(Animal animal) {
         if (animal == null) {
         throw new IllegalArgumentException("Animal inválido.");
@@ -102,9 +114,17 @@ public class Cliente extends Pessoa implements Cadastravel{
 
     @Override
     public void excluir(){
+        if (this.animais != null && !this.animais.isEmpty()) {
+         throw new exceptions.ClienteComAnimaisException("Não é possível excluir cliente com animais vinculados.");
+    }
          System.out.println("Cliente excluído.");
     }
 
+    /**
+ * Retorna os dados do cliente formatados.
+ *
+ * @return String com id, nome, telefone, email, endereço, CPF e CEP.
+ */
     @Override
     public Object consultar(int id){
         

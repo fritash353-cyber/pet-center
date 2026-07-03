@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         try {
 
@@ -46,13 +46,13 @@ public class Main {
                     LocalDate.now(),
                     5500,
                     "CRMV-12345",
-                    "Clínico Geral"
+                    "Clínico geral"
             );
 
             // Login
             veterinario.login();
 
-            // Consulta
+            // Consulta de cliente
             Consulta consulta = new Consulta(
                     1,
                     LocalDate.now(),
@@ -107,6 +107,8 @@ public class Main {
             System.out.println("Erro: " + e.getMessage());
 
         }
-
+      // mvn compile
+      // mvn exec:java "-Dexec.mainClass=classes.Main"
+      // mvn test
     }
 }

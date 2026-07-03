@@ -14,6 +14,9 @@ public class Consulta {
     private List<Exame> exames;
 
     public Consulta(int id, LocalDate dataConsulta, String historico, Veterinario veterinario){
+        if (veterinario == null) {
+        throw new exceptions.ConsultaSemVeterinarioException("Consulta sem veterinário válida.");
+    }
         this.id = id;
         this.dataConsulta = dataConsulta;
         this.historico = historico;

@@ -6,6 +6,11 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
 
+
+/**
+ * Representa um Animal no sistema da clínica veterinária.
+ * Implementa as interfaces Cadastravel e Notificavel.
+ */
 public class Animal implements Cadastravel, Notificavel{
     private int id;
     private String nome;
@@ -19,18 +24,23 @@ public class Animal implements Cadastravel, Notificavel{
     private List<Tratamento> tratamentos;
     private List<Consulta> consultas;
 
+    
     public Animal(int id, String nome, int idade, Sexo sexo, double peso,
                   LocalDate dataNascimento, Cliente cliente, Especie especie){
         if (nome == null || nome.isBlank()) {
-        throw new IllegalArgumentException("Nome inválido.");
+            throw new IllegalArgumentException("Nome inválido.");
         }
 
         if (idade < 0) {
-         throw new IllegalArgumentException("Idade inválida.");
+            throw new IllegalArgumentException("Idade inválida.");
         }
 
         if (peso <= 0) {
-        throw new IllegalArgumentException("Peso inválido.");
+            throw new IllegalArgumentException("Peso inválido.");
+        }
+
+        if (cliente == null) {
+            throw new exceptions.AnimalSemDonoException("Não é possível cadastrar um animal sem um dono");
         }
 
         this.id = id;
@@ -45,6 +55,7 @@ public class Animal implements Cadastravel, Notificavel{
         this.consultas = new ArrayList<>();
     }
 
+    // getters e setters: 
     public int getId(){
         return id;
     }
@@ -53,6 +64,11 @@ public class Animal implements Cadastravel, Notificavel{
         return nome;
     }
 
+    /**
+     * alterar o nome de animal
+     * @param nome o novo nome do animal não pode ser nulo ou vazio.
+     * @throws IllegalArgumentException Se o nome for nulo ou vazio.
+     */
     public void setNome(String nome){
         if (nome == null || nome.isBlank()) {
         throw new IllegalArgumentException("Nome inválido.");
@@ -65,6 +81,9 @@ public class Animal implements Cadastravel, Notificavel{
     }
 
     public void setIdade(int idade){
+        if(idade > 0){
+            throw new IllegalArgumentException("Idade inválida");
+        }
         this.idade = idade;
     }
 
@@ -124,7 +143,9 @@ public class Animal implements Cadastravel, Notificavel{
         this.cliente = cliente;
     }
 
-    /**1 animal realiza 1 ou mais tratamento */
+    /**1 @param animal realiza 1 ou mais tratamento 
+     * @throws IllegalArgumentException Se o tratamento fornecido for nulo
+    */
     public void adicionarTratamento(Tratamento tratamento) {
 
     if (tratamento == null) {
@@ -134,7 +155,12 @@ public class Animal implements Cadastravel, Notificavel{
     tratamentos.add(tratamento);
     }
 
-    /**1 animal realiza 1 ou mais consultas */
+    /**
+ * Adiciona uma consulta ao histórico do animal.
+ *
+ * @param consulta Consulta a ser adicionada.
+ * @throws IllegalArgumentException Se a consulta for nula.
+ */
     public void adicionarConsulta(Consulta consulta) {
 
     if (consulta == null) {
@@ -145,7 +171,11 @@ public class Animal implements Cadastravel, Notificavel{
     }
 
 
-    /*Vizualizando animal */
+    /**
+ * Exibe os dados do animal formatados.
+ *
+ * @return String com nome, idade, sexo, peso, espécie e tutor.
+ */
     public String visAnimal(){
         return "Nome: " + nome
         + "\nIdade: " + idade
@@ -155,6 +185,10 @@ public class Animal implements Cadastravel, Notificavel{
         + "\nTutor: " + cliente.getNome();
     }
 
+    /**
+     * Retorna os dados do animal em string.
+     * @return String formatada contendo a ficha cadastral básica do animal.
+     */
     public String conAnimal(){
         return visAnimal();
     }
