@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 
 /**
- * Representa um Animal no sistema da clínica veterinária.
+ * Representa um Animal no sistema.
  * Implementa as interfaces Cadastravel e Notificavel.
  */
 public class Animal implements Cadastravel, Notificavel{
@@ -24,7 +24,20 @@ public class Animal implements Cadastravel, Notificavel{
     private List<Tratamento> tratamentos;
     private List<Consulta> consultas;
 
-    
+    /**
+     * Cria um novo animal com os dados informados.
+     *
+     * @param id Identificador do animal.
+     * @param nome Nome do animal.
+     * @param idade Idade do animal.
+     * @param sexo Sexo do animal.
+     * @param peso Peso do animal.
+     * @param dataNascimento Data de nascimento do animal.
+     * @param cliente Cliente responsável pelo animal.
+     * @param especie Espécie do animal.
+     * @throws IllegalArgumentException Caso nome, idade ou peso sejam inválidos.
+     * @throws exceptions.AnimalSemDonoException Caso o cliente seja nulo.
+     */
     public Animal(int id, String nome, int idade, Sexo sexo, double peso,
                   LocalDate dataNascimento, Cliente cliente, Especie especie){
         if (nome == null || nome.isBlank()) {
@@ -107,7 +120,11 @@ public class Animal implements Cadastravel, Notificavel{
         this.idade = idade;
     }
 
-
+    /**
+     * Define o sexo do animal.
+     *
+     * @param sexo Novo sexo do animal.
+     */
     public void setSexo(Sexo sexo) {
     this.sexo = sexo;
     }
@@ -125,28 +142,51 @@ public class Animal implements Cadastravel, Notificavel{
         this.peso = peso;
     }
 
-
+    /**
+     * Define a data de nascimento do animal.
+     * @param dataNascimento Nova data de nascimento.
+     */
     public void setDataNascimento(LocalDate dataNascimento){
         this.dataNascimento = dataNascimento;
     }
 
-
+    /**
+     * Define a espécie do animal.
+     *
+     * @param especie Nova espécie do animal.
+     */
     public void setEspecie(Especie especie){
         this.especie = especie;
     }
 
+    /**
+     * Retorna a lista de tratamentos do animal.
+     * @return Lista de tratamentos.
+     */
     public List<Tratamento> getTratamentos(){
         return tratamentos;
     }
 
+    /**
+     * Define a lista de tratamentos do animal.
+     * @param tratamentos Nova lista de tratamentos.
+     */
     public void setTratamentos(List<Tratamento> tratamentos){
         this.tratamentos = tratamentos;
     }
 
+    /**
+     * Define a lista de consultas do animal.
+     * @param consultas Nova lista de consultas.
+     */
     public void setConsultas(List<Consulta> consultas){
         this.consultas =  consultas;
     }
 
+    /**
+     * Define o cliente responsável pelo animal.
+     * @param cliente Novo cliente dono do animal.
+     */
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
@@ -164,11 +204,10 @@ public class Animal implements Cadastravel, Notificavel{
     }
 
     /**
- * Adiciona uma consulta ao histórico do animal.
- *
- * @param consulta Consulta a ser adicionada.
- * @throws IllegalArgumentException Se a consulta for nula.
- */
+    * Adiciona uma consulta ao histórico do animal.
+    * @param consulta Consulta a ser adicionada.
+    * @throws IllegalArgumentException Se a consulta for nula.
+    */
     public void adicionarConsulta(Consulta consulta) {
 
     if (consulta == null) {

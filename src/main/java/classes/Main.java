@@ -2,9 +2,14 @@ package classes;
 
 import java.time.LocalDate;
 
+import exceptions.AnimalSemDonoException;
+import exceptions.ClienteComAnimaisException;
+import exceptions.ConsultaSemVeterinarioException;
+import exceptions.LoginInvalidoException;
+
 public class Main {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         try {
 
@@ -31,7 +36,7 @@ public class Main {
             Sexo.MACHO,
             18.5,
             LocalDate.of(2020, 5, 10),
-            cliente,
+            null,
             cachorro
              );
 
@@ -104,16 +109,33 @@ public class Main {
             animal.enviarNotificacao("Consulta marcada para amanhã às 14h.");
 
             veterinario.logout();
+            System.out.printf("\n");
 
-        } catch (IllegalArgumentException e) {
 
-            System.out.println("Erro: " + e.getMessage());
 
-        }
+            
+        }  catch (AnimalSemDonoException e) {
+        System.out.println(e.getMessage());
+
+    } catch (ClienteComAnimaisException e) {
+        System.out.println(e.getMessage());
+
+    } catch (ConsultaSemVeterinarioException e) {
+        System.out.println(e.getMessage());
+
+    } catch (LoginInvalidoException e) {
+        System.out.println(e.getMessage());
+
+    } catch (IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+    }
+  }
+} 
+
       // mvn compile
       // mvn exec:java "-Dexec.mainClass=classes.Main"
       // mvn test
 
-      
-    }
-}
+
+ 
+

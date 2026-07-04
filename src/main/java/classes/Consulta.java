@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+    * Representa uma Consulta veterinária no sistema.
+    */
 public class Consulta {
     private int id;
     private LocalDate dataConsulta;
@@ -13,6 +16,14 @@ public class Consulta {
 
     private List<Exame> exames;
 
+    /**
+     * Cria uma nova consulta com os dados informados.
+     * @param id Identificador da consulta.
+     * @param dataConsulta Data em que a consulta foi realizada.
+     * @param historico Histórico clínico do atendimento.
+     * @param veterinario Veterinário responsável pela consulta.
+     * @throws exceptions.ConsultaSemVeterinarioException Se o veterinário for nulo.
+     */
     public Consulta(int id, LocalDate dataConsulta, String historico, Veterinario veterinario){
         if (veterinario == null) {
         throw new exceptions.ConsultaSemVeterinarioException("Consulta sem veterinário válida.");
@@ -44,6 +55,10 @@ public class Consulta {
 
     // SETTERS: //
     
+    /**
+     * Define o veterinário responsável pela consulta.
+     * @param veterinario Novo veterinário da consulta.
+     */
     public void setVeterinario(Veterinario veterinario) {
     this.veterinario = veterinario;
     }
@@ -74,7 +89,10 @@ public class Consulta {
        exames.add(exame);
     }
 
-    //Lista todos os exames da consulta.
+    /**
+     * Lista todos os exames da consulta.
+     * @return String com a descrição e resultado de cada exame, ou mensagem caso não haja exames.
+     */
     public String listCons(){
         if (exames.isEmpty()) {
             return "Nenhum exame cadastrado.";
@@ -89,14 +107,20 @@ public class Consulta {
         return lista.toString();
     }
 
-    //Exibe os dados da consulta.
+    /**
+     * Exibe os dados da consulta formatados.
+     * @return String com número, veterinário, data e histórico da consulta.
+     */
     public String verCons(){
         return "Consulta nº " + id
                 + "\nVeterinário: " + veterinario.getNome()
                 + "\nData: " + dataConsulta
                 + "\nHistórico: " + historico;
     }
-    // Registra uma consulta.
+    
+    /**
+     * Registra a consulta no sistema.
+     */
     public void regCons(){
         System.out.println("Consulta registrada.");
     }

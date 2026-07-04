@@ -1,13 +1,19 @@
 package classes;
 
+/**
+ * Representa um Exame realizado durante uma consulta veterinária.
+ */
 public class Exame{
     private int id;
     private String descricao;
     private String resultado;
 
     /**
-     * @param resultado novo resultado.
-     * @throws IllegalArgumentException caso a descrição do construtor for nula ou somente com espaços.
+     * Cria um novo exame com os dados informados.
+     * @param id Identificador do exame.
+     * @param descricao Descrição do exame, não pode ser nula ou conter apenas espaços.
+     * @param resultado Resultado obtido no exame.
+     * @throws IllegalArgumentException Caso a descrição for nula ou conter apenas espaços.
      */
     public Exame(int id, String descricao, String resultado){
         if (descricao == null || descricao.isBlank()) {
@@ -30,8 +36,9 @@ public class Exame{
     }
 
     // SETTERS: //
+
     /**
-     * Caso a descrição modificada for nula ou com espaços.
+     * Define a descrição do exame.
      * @param descricao nova descrição.
      * @throws IllegalArgumentException se a descrição for nula ou conter apenas espaços.
      */
@@ -42,9 +49,11 @@ public class Exame{
         this.descricao = descricao;
     }
 
+    /**
+     * Define o resultado do exame.
+     * @param resultado Novo resultado do exame.
+     */
     public void setResultado(String resultado) {
         this.resultado = resultado;
     }
-
-
 }

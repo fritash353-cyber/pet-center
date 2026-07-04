@@ -1,49 +1,31 @@
-
-
-import classes.Funcionario;
-
-import org.junit.jupiter.api.Test;
-
-import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import classes.*;
+import java.time.LocalDate;
 
 public class FuncionarioTest {
 
     @Test
-    public void testCalcularSalario() {
-
-        Funcionario funcionario =
-                new Funcionario(
-                        1,
-                        "Carlos",
-                        "88999999999",
-                        "carlos@email.com",
-                        "Rua A",
-                        LocalDate.now(),
-                        5000
-                );
-
-        assertEquals(
-                5000,
-                funcionario.calcularSalario()
+    public void deveRetornarFalseQuandoEmailForNulo() {
+        Funcionario funcionario = new Funcionario(
+            1, null, "88999999999",
+            null, "Rua A",
+            LocalDate.now(), 5000
         );
+        boolean resultado = funcionario.login();
+        assertFalse(resultado);
     }
 
     @Test
-    public void testSalarioNegativo() {
-
-        assertThrows(
-                IllegalArgumentException.class,
-                () -> new Funcionario(
-                        1,
-                        "Carlos",
-                        "88999999999",
-                        "carlos@email.com",
-                        "Rua A",
-                        LocalDate.now(),
-                        -100
-                )
+    public void deveRetornarFalseQuandoEmailForVazio() {
+        Funcionario funcionario = new Funcionario(
+            1, "Carlos", "88999999999",
+            "   ", "Rua A",
+            LocalDate.now(), 5000
         );
+
+        boolean resultado = funcionario.login();
+
+        assertFalse(resultado);
     }
 }

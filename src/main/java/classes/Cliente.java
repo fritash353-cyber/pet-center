@@ -4,7 +4,10 @@ import java.util.List;
 import interfaces.Cadastravel;
 import java.util.ArrayList;
 
-
+/**
+ * Representa um Cliente no sistema.
+ * Implementa a interface Cadastravel.
+ */
 public class Cliente extends Pessoa implements Cadastravel{
     
     private String cpf;
@@ -12,6 +15,16 @@ public class Cliente extends Pessoa implements Cadastravel{
 
     private List<Animal> animais;
 
+     /**
+     * Cria um novo cliente com os dados informados.
+     * @param id Identificador do cliente.
+     * @param nome Nome do cliente.
+     * @param telefone Telefone de contato.
+     * @param email E-mail do cliente.
+     * @param endereco Endereço do cliente.
+     * @param cpf CPF do cliente.
+     * @param cep CEP do cliente.
+     */
     public Cliente(int id, String nome, String telefone, String email,
                    String endereco, String cpf, String cep){
         super(id, nome, telefone, email, endereco);
@@ -56,10 +69,17 @@ public class Cliente extends Pessoa implements Cadastravel{
       this.cep = cep;
     }
 
+    /**
+     * Registra o cliente no sistema.
+     */
     public void regCliente(){
         System.out.println("Cliente cadastrado com sucesso!");
     }
 
+    /**
+     * Retorna os dados do cliente formatados.
+     * @return String com id, nome, telefone, email, endereço, CPF e CEP.
+     */
     public String conCliente(){
         return "ID: " + getId() +
                "\nNome: " + getNome() +
@@ -70,6 +90,10 @@ public class Cliente extends Pessoa implements Cadastravel{
                "\nCEP: " + cep;
     }
 
+    /**
+     * Lista todos os animais vinculados ao cliente.
+     * @return Lista de animais do cliente.
+     */
     public List<Animal> listarAnimais() {
         return animais;
     }
@@ -100,7 +124,10 @@ public class Cliente extends Pessoa implements Cadastravel{
       animais.remove(animal);
     }
  
-
+     /**
+     * Cadastra o cliente no sistema.
+     * @throws IllegalArgumentException Se o CPF for nulo ou vazio.
+     */
     @Override
     public void cadastrar(){
          if(cpf == null || cpf.isBlank()){
@@ -113,11 +140,18 @@ public class Cliente extends Pessoa implements Cadastravel{
 
     }
 
+    /**
+     * Altera os dados do cliente no sistema.
+     */
     @Override 
     public void  alterar(){
          System.out.println("Dados do cliente alterados.");
     }
 
+    /**
+     * Remove o cliente do sistema.
+     * @throws exceptions.ClienteComAnimaisException Se o cliente possuir animais vinculados.
+     */
     @Override
     public void excluir(){
         if (this.animais != null && !this.animais.isEmpty()) {
